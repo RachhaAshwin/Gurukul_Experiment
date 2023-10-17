@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export const metadata = {
   title: "Gurukul",
@@ -9,9 +9,24 @@ export const metadata = {
 const RootLayout = ({ children }) => (
   <html lang='en'>
     <ClerkProvider>
-    <body>
-      {children}
-    </body>
+    <>
+    <SignedIn>
+      <>
+        {/* <header className=""> */}
+        {/* </header> */}
+        <body>
+        <UserButton className="absolute top-4 left-4 p-3 bg-gray-100 rounded-lg shadow-lg z-50 text-gray-800"/>
+
+        {children}
+        </body>
+      </>
+    </SignedIn>
+    <SignedOut>
+        <body>
+        {children}
+        </body>
+    </SignedOut>
+    </>
     </ClerkProvider>
 
   
