@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'
 import {UserButton, auth} from "@clerk/nextjs"
+import { currentUser } from '@clerk/nextjs';
 
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Sandpack, SandpackProvider, SandpackCodeEditor, SandpackThemeProvider } from "@codesandbox/sandpack-react";
@@ -21,11 +22,12 @@ const ProblemDetail = () => {
   const [showHints, setShowHints] = useState(false);
   const [debugInfo, setDebugInfo] = useState({});
   const [showHint, setShowHint] = useState(null);
+  
   useEffect(() => {
     if (id) {
       setDebugInfo(prev => ({ ...prev, id }));
       setDebugInfo(prev => ({ ...prev, fetchStatus: 'Fetching problem details...' }));
-      
+
       fetch(`https://x8ki-letl-twmt.n7.xano.io/api:m3qoN9RM/lcdb/${id}`)
         .then(response => response.json())
         .then(data => {

@@ -1,6 +1,5 @@
 import { auth, clerkClient } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { OrgDetails, SessionDetails, UserDetails } from "./details";
 import Link from "next/link";
 
 export default async function DashboardPage() {
@@ -19,11 +18,6 @@ export default async function DashboardPage() {
           <h1 className="text-3xl font-semibold text-black">
             👋 Hi, {user.firstName || `Stranger`}
           </h1>
-          <div className="grid gap-4 mt-8 lg:grid-cols-3">
-            <UserDetails />
-            <SessionDetails />
-            <OrgDetails />
-          </div>
           <h2 className="mt-16 mb-4 text-3xl font-semibold text-black">
             What's next?
           </h2>
